@@ -20,7 +20,7 @@ struct MealListView: View {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle())
                 case .loaded(let meals):
-                    List(meals) { meal in
+                    List(meals.sorted()) { meal in
                         mealNavigationRow(meal)
                     }
                     .navigationDestination(for: Meal.self) { meal in

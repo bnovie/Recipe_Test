@@ -11,7 +11,11 @@ struct MealList:Decodable {
     let meals: [Meal]
 }
 
-struct Meal: Decodable, Identifiable, Hashable {
+struct Meal: Decodable, Identifiable, Hashable, Comparable {
+    static func < (lhs: Meal, rhs: Meal) -> Bool {
+        lhs.name < rhs.name
+    }
+    
     let id: String
     let name: String
     let thumbURL: String
@@ -22,4 +26,3 @@ struct Meal: Decodable, Identifiable, Hashable {
         case thumbURL = "strMealThumb"
     }
 }
-

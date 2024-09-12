@@ -28,11 +28,7 @@ struct MealDetailView: View {
                             .font(.headline)
                         VStack {
                             ForEach(mealDetailModel.ingredients) { ingredient in
-                                HStack {
-                                    Text(ingredient.name)
-                                    Spacer()
-                                    Text(ingredient.measure)
-                                }
+                                ingredientRow(ingredient: ingredient)
                             }
                         }
                         .padding()
@@ -46,9 +42,18 @@ struct MealDetailView: View {
             }
         }
         .navigationTitle(meal.name)
+        .navigationBarTitleDisplayMode(.inline)
         .padding()
         .task {
             await viewModel.fetchMeal( meal)
+        }
+    }
+    
+    private func ingredientRow(ingredient: Ingredient) -> some View {
+        HStack {
+            Text(ingredient.name)
+            Spacer()
+            Text(ingredient.measure)
         }
     }
 }
